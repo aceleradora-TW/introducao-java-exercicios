@@ -2,13 +2,24 @@ package com.agil.aceleradora.exercicios;
 
 public class SomaDobrada {
 
-    public static int soma(int a, int b) {
-        return -1;
+    /*
+    A implementação deve considerar as seguintes regras:
+    - Caso os dois números recebidos sejam iguais, o método retorna o dobro da soma;
+    - Caso um dos números seja menor do que 1, o método retorna -1;
+    - Caso nenhuma das condições anteriores seja verdadeira, o método retorna a soma dos dois números.
+
+    Exemplos de entrada e saida:
+      somaDobrada(1, 2); // retorna 3
+      somaDobrada(3, 2); // retorna 5
+      somaDobrada(2, 2); // retorna 8
+      somaDobrada(7, 7); // retorna 28
+      somaDobrada(3, -3); // retorna -1
+     */
+    public static int somaDobrada(int a, int b) {
+        return 0;
     }
 
     public static void main(String[] args) {
-        if (soma(1, 1) != 4) {
-            System.out.printf("Soma 1 + 1 incorreta. Deveria ser 4, resultou em %d.\n", soma(1, 1));
-        }
+        // Teste o metodo aqui
     }
 }
