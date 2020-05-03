@@ -1,10 +1,10 @@
 package com.agil.aceleradora.main;
 
-import com.agil.aceleradora.main.MetodoMain;
-
 public class Classe {
 
-    public void metodo() {
+    void metodo() {
 
+        MetodoMain mm = new MetodoMain();
+        mm.soma(1, 1);
     }
 }
