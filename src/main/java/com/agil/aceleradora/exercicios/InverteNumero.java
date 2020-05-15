@@ -21,6 +21,21 @@ String[] separado = valor.split(""); // separado == ["a", "b", "c"]
 public class InverteNumero {
 
     public int inverter(int valor) {
-        return valor;
+        String[] algarismos = Integer.toString(valor).split("");
+
+        String resultado = "";
+        for (int i = algarismos.length - 1; i >= 0; i--) {
+            resultado += algarismos[i];
+        }
+
+        return Integer.parseInt(resultado);
+    }
+
+    public static void main(String[] args) {
+        InverteNumero in = new InverteNumero();
+
+        for (int i = 1000; i < 1100; i++) {
+            System.out.printf("Inverter %d: %d\n", i, in.inverter(i));
+        }
     }
 }
