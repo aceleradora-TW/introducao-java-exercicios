@@ -23,10 +23,37 @@ a classe ContaOcorrencia para testar o metodo.
 public class ContaOcorrencias {
 
     private int contaOcorrencias(String frase, String conteudoBuscado) {
-        return 0;
+        String[] letras = frase.split("");
+
+        int contador = 0;
+        for (int i = 0; i < letras.length; i++) {
+            if (letras[i].equals(conteudoBuscado)) {
+                contador++;
+            }
+        }
+
+        return contador;
+    }
+
+    private int contaOcorrenciasComForeach(String frase, String conteudoBuscado) {
+        String[] letras = frase.split("");
+
+        int contador = 0;
+        for (String letra : letras) {
+            if (letra.equals(conteudoBuscado)) {
+                contador++;
+            }
+        }
+
+        return contador;
     }
 
     public static void main(String[] args) {
+        ContaOcorrencias co = new ContaOcorrencias();
 
+        System.out.println(co.contaOcorrencias("Bolo", "o"));
+        System.out.println(co.contaOcorrencias("Batata", "a"));
+        System.out.println(co.contaOcorrencias("Alejandro", "a"));
+        System.out.println(co.contaOcorrencias("Uma Escola", "b"));
     }
 }
