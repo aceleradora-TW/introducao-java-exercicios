@@ -20,9 +20,11 @@ public class CadastraPessoas {
     private static String[] cadastrarNomes(int quantidadeDeNomes) {
         String[] nomes = new String[quantidadeDeNomes];
 
-        // Implemente a logica de cadastro aqui.
-        // Lembre-se de utilizar repeticoes e de usar
-        // leitor.nextLine() para ler a entrada do terminal como String
+        for (int i = 0; i < quantidadeDeNomes; i++) {
+            System.out.printf("\nPreencha o %d nome: \n", i + 1);
+            String nome = leitor.next();
+            nomes[i] = nome;
+        }
 
         return nomes;
     }
