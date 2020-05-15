@@ -2,34 +2,35 @@ package com.agil.aceleradora.exercicios;
 
 public class FizzBuzz {
 
+    private static final String FIZZ = "Fizz";
+    private static final String BUZZ = "Buzz";
+
     public String fizzBuzz(int numero) {
-        // Implemente o codigo aqui:
-        return null;
+        boolean ehFizz = numero % 3 == 0;
+        boolean ehBuzz = numero % 5 == 0;
+
+        if (ehFizz && ehBuzz) {
+            return FIZZ + BUZZ;
+        }
+
+        if (ehFizz) {
+            return FIZZ;
+        }
+
+        if (ehBuzz) {
+            return BUZZ;
+        }
+
+        return Integer.toString(numero);
     }
 
     //  Codigo de teste. Nao eh necessario alterar:
     public static void main(String[] args) {
-        FizzBuzz solucaoFizzBuzz = new FizzBuzz();
+        FizzBuzz fb = new FizzBuzz();
 
-        String fizz = solucaoFizzBuzz.fizzBuzz(3);
-        String buzz = solucaoFizzBuzz.fizzBuzz(5);
-        String fizzBuzz = solucaoFizzBuzz.fizzBuzz(15);
-        String sete = solucaoFizzBuzz.fizzBuzz(7);
-
-        if (!"Fizz".equals(fizz)) {
-            System.err.printf("'Fizz' esta errado. Retornou: '%s'\n", fizz);
+        for (int i = 0; i < 50; i++) {
+            System.out.printf("FizzBuzz %d: %s\n", i, fb.fizzBuzz(i));
         }
 
-        if (!"Buzz".equals(buzz)) {
-            System.err.printf("'Buzz' esta errado. Retornou: '%s'\n", buzz);
-        }
-
-        if (!"com.agil.aceleradora.exercicios.FizzBuzz".equals(fizzBuzz)) {
-            System.err.printf("'com.agil.aceleradora.exercicios.FizzBuzz' esta errado. Retornou: '%s'\n", fizzBuzz);
-        }
-
-        if (!"7".equals(sete)) {
-            System.err.printf("'7' esta errado. Retornou: '%s'\n", sete);
-        }
     }
 }
