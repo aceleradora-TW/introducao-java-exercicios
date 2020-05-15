@@ -16,10 +16,22 @@ public class SomaDobrada {
       somaDobrada(3, -3); // retorna -1
      */
     public static int somaDobrada(int a, int b) {
-        return 0;
+        if (a < 1 || b < 1) {
+            return -1;
+        }
+
+        int soma = a + b;
+
+        return a == b
+                ? soma * 2
+                : soma;
     }
 
     public static void main(String[] args) {
-        // Teste o metodo aqui
+        for (int i = 0; i < 10; i++) {
+            for (int j = 10; j >= 0; j--) {
+                System.out.printf("%d + %d = %d\n", i, j, somaDobrada(i, j));
+            }
+        }
     }
 }
