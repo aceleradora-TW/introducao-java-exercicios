@@ -87,7 +87,7 @@ public class FiltraParesImpares {
 
     // Outra forma de resolver sem duplicacao e com apenas um loop
     private static int[] filtraComCopia(IntPredicate predicado, int[] numeros) {
-        int[] resultado = new int[1];
+        int[] resultado = new int[0];
         int ocupacao = 0;
 
         for (int numero : numeros) {
