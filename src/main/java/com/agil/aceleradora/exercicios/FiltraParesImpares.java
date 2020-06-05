@@ -1,11 +1,16 @@
 package com.agil.aceleradora.exercicios;
 
 import java.util.Arrays;
+import java.util.function.IntPredicate;
 
 public class FiltraParesImpares {
 
     private static boolean ehPar(int numero) {
         return numero % 2 == 0;
+    }
+
+    private static boolean ehImpar(int numero) {
+        return !ehPar(numero);
     }
 
     private static int[] expandeArray(int[] original) {
@@ -15,7 +20,6 @@ public class FiltraParesImpares {
     private static boolean arrayEstaCheio(int ocupacao, int[] array) {
         return array.length == ocupacao;
     }
-
 
     /*
     Este metodo recebe um vetor de inteiros como parametros e
@@ -81,34 +85,54 @@ public class FiltraParesImpares {
         return impares;
     }
 
-    // Outra forma de resolver com apenas um loop
-    private static int[] filtraParesComCopia(int[] numeros) {
-        int[] pares = new int[1];
+    // Outra forma de resolver sem duplicacao e com apenas um loop
+    private static int[] filtraComCopia(IntPredicate predicado, int[] numeros) {
+        int[] resultado = new int[1];
         int ocupacao = 0;
 
-        for (int i = 0; i < numeros.length; i++) {
-            boolean ehUltimaIteracao = i == numeros.length - 1;
-
-            if (ehPar(numeros[i])) {
-                pares[ocupacao] = numeros[i];
-                ocupacao++;
-                if (arrayEstaCheio(ocupacao, pares) && !ehUltimaIteracao) {
-                    pares = expandeArray(pares);
+        for (int numero : numeros) {
+            if (predicado.test(numero)) {
+                if (arrayEstaCheio(ocupacao, resultado)) {
+                    resultado = expandeArray(resultado);
                 }
+
+                resultado[ocupacao] = numero;
+                ocupacao++;
             }
         }
 
-        return pares;
+        return resultado;
+    }
+
+    private static int[] filtraComStream(IntPredicate predicado, int[] numeros) {
+        return Arrays.stream(numeros).filter(predicado).toArray();
     }
 
     // Dica: Utilize Arrays.toString(vetor) para imprimir um vetor de maneira legivel
     public static void main(String[] args) {
-        int[] pares = filtraPares(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10});
-        int[] pares2 = filtraParesComCopia(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10});
-        int[] impares = filtraImpares(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10});
+        int[] numeros = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
+        int[] pares = filtraPares(numeros);
+        int[] impares = filtraImpares(numeros);
+
+        int[] pares2 = filtraComCopia(FiltraParesImpares::ehPar, numeros);
+        int[] impares2 = filtraComCopia(FiltraParesImpares::ehImpar, numeros);
+
+        int[] pares3 = filtraComStream(FiltraParesImpares::ehPar, numeros);
+        int[] impares3 = filtraComStream(FiltraParesImpares::ehImpar, numeros);
+
+        System.out.println("---------------------");
+        System.out.println("Com dois loops:");
         System.out.println(Arrays.toString(pares));
-        System.out.println(Arrays.toString(pares2));
         System.out.println(Arrays.toString(impares));
+        System.out.println("---------------------");
+        System.out.println("Com copia:");
+        System.out.println(Arrays.toString(pares2));
+        System.out.println(Arrays.toString(impares2));
+        System.out.println("---------------------");
+        System.out.println("Com streams:");
+        System.out.println(Arrays.toString(pares3));
+        System.out.println(Arrays.toString(impares3));
+        System.out.println("---------------------");
     }
 }
